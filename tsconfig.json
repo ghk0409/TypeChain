@@ -3,7 +3,10 @@
     "compilerOptions": {
         "outDir": "build", // 컴파일 결과 저장 경로
         "target": "ES6", // 컴파일할 자바스크립트 버전
-        "lib": ["ES6", "DOM"], // 사용할 API 및 환경
-        "strict": true // 타입스크립트 보호 모드
+        "lib": ["ES6"], // 사용할 API 및 환경
+        "strict": true, // 타입스크립트 보호 모드
+        // "allowJs": true, // 자바스크립트 사용 허용
+        "esModuleInterop": true, // es6모듈 코드베이스 임포트 허용
+        "module": "CommonJS" // 기본 사용 모듈(웹팩 사용 시)
     }
 }

@@ -1,7 +1,26 @@
-import { init, exit } from "myPackage";
+// import * as crypto from "crypto" -> esModuleInterop 옵션 false일 경우
+import crypto from "crypto"; // @type/node에 정의 파일 존재
 
-init({
-    url: "true",
-});
+interface BlockShape {
+    hash: string;
+    prevHash: string;
+    height: number;
+    data: string;
+}
 
-exit(2);
+class Block implements BlockShape {
+    public hash: string;
+    constructor(
+        public prevHash: string,
+        public height: number,
+        public data: string
+    ) {
+        this.hash = Block.calculateHash(prevHash, height, data);
+    }
+
+    static calculateHash(prevHash: string, height: number, data: string) {
+        const toHash = `${prevHash}${height}${data}`;
+
+        return crypto.createHash("sha256").update(toHash).digest("hex");
+    }
+}
